@@ -1,0 +1,61 @@
+body {
+	font-family: Verdana, Arial, sans-serif;
+}
+
+h1 {
+  color: white;
+  background-color: navy;
+}
+
+/* h1:hover {
+  color: #61b3e7;
+  background-color: #e6e8fa;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+  
+} */
+
+h1.clicked {
+  color: navy;
+  background-color: purple;
+}
+h2 {
+  color: 333CFF;
+}
+
+footer {
+      background-color: cornflowerblue;
+      padding: 1px 8px;
+}
+    
+ footer > p {
+        color: white;
+        font-size: 0.8em;
+} 
+aside {
+      max-width: 100x;
+      border-top: thin cornflowerblue solid;
+      border-bottom: thin cornflowerblue solid;
+      font-size: 1.5em;
+      line-height: 80%;
+      font-style: italic;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      color: navy;
+    }
+
+.leftBar {
+      float: left;
+      margin-right: 8px;
+ }
+
+.rightBar {
+      float: right;
+      margin-left: 8px;
+}
+      
+      
