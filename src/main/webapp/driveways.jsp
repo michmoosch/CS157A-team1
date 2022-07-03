@@ -37,7 +37,7 @@
     <input id="password" type="text" name="password" />
     <br />
     <input type="submit" value="Login" />
-    <input type="submit" value="SignUp" />
+    <a href="signup.jsp" >Sign-up</a>
   </fieldset>
 </form>
 <br>

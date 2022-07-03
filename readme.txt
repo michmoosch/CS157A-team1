@@ -4,6 +4,19 @@ Make sure you're logged in to the right github account lol
 
 Useful git commands:
 
+
+New Branch:
+
+git pull
+
+git checkout -b "new-branch-name"
+
+git add "filename"
+
+
+
+
+
 Clone Repo:
 	git clone https://github.com/michmoosch/CS157A-team1.git
 

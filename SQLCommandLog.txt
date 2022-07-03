@@ -1,0 +1,21 @@
+Initial Table Creation + Test Users
+
+CREATE TABLE Users(
+	userId INT,
+    userName VARCHAR(35),
+    first_name VARCHAR(35),
+    last_name VARCHAR(35),
+    email VARCHAR(45),
+    userType VARCHAR(20),
+    creationDate DATETIME
+);
+
+INSERT INTO Users VALUES (
+	1,
+    "michmoo",
+    "Michael",
+    "Moore",
+	"michael@driveways.com",
+    "Admin",
+    NOW()
+);
