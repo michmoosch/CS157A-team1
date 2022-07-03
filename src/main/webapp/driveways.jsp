@@ -12,7 +12,7 @@
 <body >
  
 <h1 onclick = "handleClick(this)"> Welcome to Driveways </h1> 
-<h2>Host or rent parking spaces anywhere you travel</h2>
+<h2>Host or rent parking spaces anywhere you travel!</h2>
 <br>
 <aside class="leftBar"> &quot;..Save Money, Affordable Parkings...&quot;
 </aside>
@@ -29,11 +29,11 @@
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
 <form action = "#">
   <fieldset>
-    <legend>Personal Data</legend>
-    <label for="user">Username: </label>
+    <legend>Login</legend>
+    <label for="user">Username  : </label>
     <input id="user" type="text" name="user" />
     <br />
-    <label for="password">Password: </label>
+    <label for="password">Password :</label>
     <input id="password" type="text" name="password" />
     <br />
     <input type="submit" value="Login" />
