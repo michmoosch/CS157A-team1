@@ -18,27 +18,40 @@
 </aside>
 <br>
 <br>
-<h1 onclick = "handleClick(this)"> Host a Parking </h1>
-<a href = "images/HostParking.jpg">
- <img src="images/HostParking.jpg" width="426" height="240" />
+<br>
+<a href = ".images/car.png">
+	 <img src="images/car.png" width="426" height="240" />
 </a>
-<h1 onclick = "handleClick(this)"> Rent a Parking</h1> 
-<a href = "images/RentParking.jpg">
-<img src="images/RentParking.jpg" width="426" height="240" />
-</a>
+<br>
+<br>
+<br>
+<aside class="rightBar"> &quot;..Hassle Free Commute...&quot;
+</aside>
+<br>
+<br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
 <form action = "#">
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>
-    <input id="email" type="text" name="email" />
+    <input id="email" type="text" name="emailBtn" />
     <br />
     <label for="password">Password :</label>
-    <input id="password" type="password" name="password" />
+    <input id="password" type="password" name="passwordBtn" />
     <br />
-    <input type="submit" value="Login" />
-    <a href="signup.jsp" >Sign-up</a>
+    <br/>
+   <a href="dashboard.jsp" >Dashboard</a>
+   <a href="signup.jsp" >Sign-up</a>
   </fieldset>
+  
+  <fieldset>
+	 <legend>Comments/Reviews</legend>
+	 <p>What do you expect from sessions?</p>
+	 <textarea id="comments" rows="3" cols="50" name="comments"></textarea>
+	 <br>
+  	 <input type="submit" value="Submit" id="submitBtn">
+  	 <br>
+   </fieldset>
 </form>
 
 <p style="font-weight: bold;">
@@ -75,14 +88,11 @@
 	}catch(SQLException e) { 
 		out.println("SQLException caught: " +e.getMessage()); 
 	} 
-
+ 
 %>
 </p>
 
 <br>
-
-<aside class="leftBar"> &quot;..Hassle Free Commute...&quot;
-</aside>
 <br>
 <br>
 <script>
@@ -96,6 +106,8 @@
     function handleSubmit() {
     	console.log("Submitted: " + email);
     }
+    
+    
   </script>
 
 
@@ -103,7 +115,7 @@
 <footer>
 	<p>
 	Special Thanks to our professor Mike Wu <br>
-	last updated: 7/2/2022 <br>
+	last updated: 7/4/2022 <br>
 	</p>
 </footer>
 </body> 
