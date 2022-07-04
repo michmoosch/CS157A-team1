@@ -19,3 +19,22 @@ INSERT INTO Users VALUES (
     "Admin",
     NOW()
 );
+
+
+
+CREATE table UserAuth (
+
+	id int unsigned NOT NULL AUTO_INCREMENT,
+    UserEmail varchar(255) DEFAULT NULL,
+    UserPassword varchar(255) DEFAULT NULL,
+    primary key(id)
+
+);
+
+INSERT INTO Driveways.UserAuth VALUES(
+	0,
+	"michael@driveways.com",
+    MD5("password")
+
+);
+SELECT * FROM Driveways.UserAuth;

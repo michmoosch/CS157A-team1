@@ -10,66 +10,75 @@
 <body>
 <h1>Driveways Signup Screen</h1>
 
-<form action="" method="post" id="signup">
-  <label for="fname">First name:</label>
+<form action="" method="post" id="signup" onsubmit="submitHandler()">
+  <!-- <label for="fname">First name:</label>
   <input type="text" id="fname" name="fname"><br><br>
   
   <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br>
+  <input type="text" id="lname" name="lname"><br><br> -->
   
   <label for="email">Email: </label>
   <input type="text" id="email" name="email"><br><br>
   
   <label for="password">Password: </label>
-  <input type="text" id="password" name="password"><br><br>
+  <input type="password" id="password" name="password"><br><br>
   
  
   <input type="submit" value="Submit" id="submitBtn">
 </form>
+<a href="driveways.jsp">Return Home</a>
 
-<p>
+<p id="feedback">
 	
 	<%
-		String firstname = request.getParameter("fname");
-		String lastname = request.getParameter("lname");
+		/* String firstname = request.getParameter("fname");
+		String lastname = request.getParameter("lname"); */
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		
+		out.println("");
 		try { 
-		java.sql.Connection con; 
-		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+			java.sql.Connection con; 
+			Class.forName("com.mysql.jdbc.Driver"); 
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
 		
-		Statement stmt = con.createStatement();
+			Statement stmt = con.createStatement();
 		
-		ResultSet res1 = stmt.executeQuery("SELECT userId FROM Driveways.Users WHERE email = '" + email + "';");
+			ResultSet res1 = stmt.executeQuery("SELECT id FROM Driveways.UserAuth WHERE UserEmail = '" + email + "';");
 		
 		
-		if (res1.next() == true){
-			out.println("that email already exists");
-		} else{
-			ResultSet test1 = con.createStatement().executeQuery("SELECT MAX(userId) FROM Driveways.Users");
-			int newid = -1;
-			while (test1.next()){
-				newid = test1.getInt(1) + 1;
+			if (email != null){
+				if (res1.next() == true){
+					out.println("that email already exists");
+				} else{
+					String newVals = "0, '" + email + "', MD5('" + password+"')";
+					con.createStatement().executeUpdate("INSERT INTO Driveways.UserAuth VALUES(" + newVals + ")");
+					out.println("successfully created new account");	
+				}
 			}
-			String vals = newid + ", '" + firstname + "', '" + lastname + "', '" + email + "', " + "'User', " + "NOW()";
-			if (newid != -1){
-				con.createStatement().executeUpdate("INSERT INTO Driveways.Users VALUES(" + vals + ")");
-			}
-			out.println("success");
 			
-		}
+			
 		
-		con.close(); 
-	}catch(SQLException e) { 
-		out.println("SQLException caught: " +e.getMessage()); 
-	}  
+			con.close(); 
+		}catch(SQLException e) { 
+			out.println("SQLException caught: " +e.getMessage()); 
+		}  
 
 		
 	%>
 </p>
+
+<script>
+
+	const submitHandler = () => {
+		
+		document.getElementById("feedback").style.display = "block";
+		
+		setTimeout(() => {}, 10000);
+		
+	}
+	
+</script>
 
 </body>
 </html>

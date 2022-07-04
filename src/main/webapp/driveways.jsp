@@ -30,17 +30,57 @@
 <form action = "#">
   <fieldset>
     <legend>Login</legend>
-    <label for="user">Username  : </label>
-    <input id="user" type="text" name="user" />
+    <label for="email">Email  : </label>
+    <input id="email" type="text" name="email" />
     <br />
     <label for="password">Password :</label>
-    <input id="password" type="text" name="password" />
+    <input id="password" type="password" name="password" />
     <br />
     <input type="submit" value="Login" />
     <a href="signup.jsp" >Sign-up</a>
   </fieldset>
 </form>
+
+<p style="font-weight: bold;">
+<% 
+	String email = request.getParameter("email");
+	String password = request.getParameter("password");
+	out.println("");
+	
+	try { 
+		java.sql.Connection con; 
+		Class.forName("com.mysql.jdbc.Driver"); 
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+	
+		Statement stmt = con.createStatement();
+	
+		ResultSet res1 = stmt.executeQuery("SELECT * FROM Driveways.UserAuth WHERE UserEmail = '" + email + "' AND UserPassword = MD5('" + password + "');");
+		
+		int thisId = -1;
+		
+		while(res1.next()){
+			thisId = res1.getInt(1);
+		}
+	
+		if (email != null){
+			if (thisId <= 0 ){
+				out.println("Not Found");
+			} else{
+				out.println("Successfully Logged in");
+			}
+		}
+		
+	
+		con.close(); 
+	}catch(SQLException e) { 
+		out.println("SQLException caught: " +e.getMessage()); 
+	} 
+
+%>
+</p>
+
 <br>
+
 <aside class="leftBar"> &quot;..Hassle Free Commute...&quot;
 </aside>
 <br>
@@ -52,25 +92,14 @@
       value = value === '' ? 'clicked' : '';
       node.setAttribute('class', value);
     }
+    
+    function handleSubmit() {
+    	console.log("Submitted: " + email);
+    }
   </script>
 
 
-<% 
-/* try { 
-	java.sql.Connection con; 
-	Class.forName("com.mysql.jdbc.Driver"); 
-	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sonwane?autoReconnect=true&useSSL=false", "root", "root");
-	//out.println (request.getParameter("sonwane") + "database successfully opened."); 
-	Statement stmt=con.createStatement();
-	ResultSet rs=stmt.executeQuery("select * from sonwane.student");
-	while(rs.next())
-	out.println("<br>" + rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
-	con.close(); 
-}catch(SQLException e) { 
-	out.println("SQLException caught: " +e.getMessage()); 
-}  */
-
-%> 
+ 
 <footer>
 	<p>
 	Special Thanks to our professor Mike Wu <br>
