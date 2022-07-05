@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Driveways</title>
+<link href="style.css" rel="stylesheet" />
 </head>
 <body>
 <h1>Driveways Signup Screen</h1>
@@ -26,7 +27,7 @@
  
   <input type="submit" value="Submit" id="submitBtn">
 </form>
-<a href="driveways.jsp">Return Home</a>
+<a href="driveways.jsp">back</a>
 
 <p id="feedback">
 	
@@ -37,7 +38,7 @@
 		String password = request.getParameter("password");
 		
 		out.println("");
-		try { 
+		/* try { 
 			java.sql.Connection con; 
 			Class.forName("com.mysql.jdbc.Driver"); 
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
@@ -64,7 +65,7 @@
 			out.println("SQLException caught: " +e.getMessage()); 
 		}  
 
-		
+		 */
 	%>
 </p>
 
@@ -79,6 +80,12 @@
 	}
 	
 </script>
+<footer>
+	<p>
+	Special Thanks to our professor Mike Wu <br>
+	last updated: 7/4/2022 <br>
+	</p>
+</footer>
 
 </body>
 </html>
