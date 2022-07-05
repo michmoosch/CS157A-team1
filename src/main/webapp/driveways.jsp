@@ -83,7 +83,7 @@
 			if (thisId <= 0 ){
 				out.println("Not Found");
 			} else{
-				out.println("Successfully Logged in");
+				out.println("Successfully Logged in to: " + email);
 			}
 		}
 		
