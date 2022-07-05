@@ -39,20 +39,24 @@
     <label for="password">Password :</label>
     <input id="password" type="password" name="passwordBtn" />
     <br />
-    <br/>
-   <a href="dashboard.jsp" >Dashboard</a>
-   <a href="signup.jsp" >Sign-up</a>
   </fieldset>
+ </form>
+<a href="dashboard.jsp" ><button>Login</button></a>
+<a href="signup.jsp"><button>Register</button></a>
+<br>
+<br>
   
+ <form action = "#">
   <fieldset>
-	 <legend>Comments/Reviews</legend>
-	 <p>What do you expect from sessions?</p>
+	 <legend>Reviews</legend>
+	 <p>Feedbacks from end user</p>
 	 <textarea id="comments" rows="3" cols="50" name="comments"></textarea>
 	 <br>
   	 <input type="submit" value="Submit" id="submitBtn">
   	 <br>
    </fieldset>
 </form>
+
 
 <p style="font-weight: bold;">
 <% 
@@ -63,7 +67,7 @@
 	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "root");
 	
 		Statement stmt = con.createStatement();
 	
@@ -88,13 +92,10 @@
 	}catch(SQLException e) { 
 		out.println("SQLException caught: " +e.getMessage()); 
 	} 
- 
 %>
 </p>
 
-<br>
-<br>
-<br>
+
 <script>
 //Accepts an html element
     function handleClick(node) {
@@ -106,17 +107,16 @@
     function handleSubmit() {
     	console.log("Submitted: " + email);
     }
-    
-    
-  </script>
+</script>
 
 
- 
 <footer>
 	<p>
 	Special Thanks to our professor Mike Wu <br>
 	last updated: 7/4/2022 <br>
 	</p>
 </footer>
+
+
 </body> 
 </html>
