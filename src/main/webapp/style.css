@@ -1,5 +1,5 @@
 body {
-	font-family: Verdana, Arial, sans-serif;
+	font-family: Verdana, sans-serif;
 }
 
 
@@ -26,7 +26,16 @@ h1.clicked {
   background-color: purple;
 }
 h2 {
-  color: 333CFF;
+  color: #e6e8fa;
+  font: Arial;
+}
+h3 {
+  color: black;
+}
+
+img{
+	display: block;
+	margin: 0 auto;
 }
 
 footer {
