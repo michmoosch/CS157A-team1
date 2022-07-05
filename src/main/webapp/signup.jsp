@@ -27,21 +27,23 @@
  
   <input type="submit" value="Submit" id="submitBtn">
 </form>
-<a href="driveways.jsp">back</a>
+<br>
+<br>
+<a href="driveways.jsp"><button>back</button></a>
 
 <p id="feedback">
 	
 	<%
-		/* String firstname = request.getParameter("fname");
-		String lastname = request.getParameter("lname"); */
+		String firstname = request.getParameter("fname");
+		String lastname = request.getParameter("lname"); 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		out.println("");
-		/* try { 
+		 try { 
 			java.sql.Connection con; 
 			Class.forName("com.mysql.jdbc.Driver"); 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "root");
 		
 			Statement stmt = con.createStatement();
 		
@@ -64,8 +66,7 @@
 		}catch(SQLException e) { 
 			out.println("SQLException caught: " +e.getMessage()); 
 		}  
-
-		 */
+		 
 	%>
 </p>
 
