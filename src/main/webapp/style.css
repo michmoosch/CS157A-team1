@@ -1,5 +1,8 @@
 body {
 	font-family: Verdana, sans-serif;
+	background: linear-gradient(skyblue , lightgreen);
+	background-repeat : no repeat;
+	background-attachment: fixed;
 }
 
 
@@ -8,8 +11,9 @@ body {
 h1 {
   color: white;
   background-color: navy;
+  margin: 0 auto;
 }
-
+s
 /* h1:hover {
   color: #61b3e7;
   background-color: #e6e8fa;
@@ -26,7 +30,7 @@ h1.clicked {
   background-color: purple;
 }
 h2 {
-  color: #e6e8fa;
+  color: black;
   font: Arial;
 }
 h3 {
@@ -68,6 +72,23 @@ aside {
 .rightBar {
       float: right;
       margin-left: 8px;
+}
+
+button{
+	font-size: 40px;
+	padding: 10px;
+	background-color : black;
+	color : white;
+	margin: 20px;
+	 
+}
+hr{
+	color: navy;
+	size: 2;
+}
+
+#btnback{
+		text-align : center
 }
       
       
