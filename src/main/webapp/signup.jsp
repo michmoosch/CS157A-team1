@@ -12,9 +12,9 @@
 <h1>Driveways Signup Screen</h1>
 
 <form action="" method="post" id="signup" onsubmit="submitHandler()">
-  <!-- <label for="fname">First name:</label>
+  <label for="fname">Name:</label>
   <input type="text" id="fname" name="fname"><br><br>
-  
+  <!-- 
   <label for="lname">Last name:</label>
   <input type="text" id="lname" name="lname"><br><br> -->
   
@@ -43,7 +43,7 @@
 		 try { 
 			java.sql.Connection con; 
 			Class.forName("com.mysql.jdbc.Driver"); 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
 		
 			Statement stmt = con.createStatement();
 		
@@ -54,7 +54,7 @@
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
-					String newVals = "0, '" + email + "', MD5('" + password+"')";
+					String newVals = "0, '" + email + "', MD5('" + password+"'), '" + firstname + "'";
 					con.createStatement().executeUpdate("INSERT INTO Driveways.UserAuth VALUES(" + newVals + ")");
 					out.println("successfully created new account");	
 				}

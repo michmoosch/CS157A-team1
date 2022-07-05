@@ -30,18 +30,19 @@
 <br>
 <br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
-<form action = "#">
+<form action = "dashboard.jsp" method="post">
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>
-    <input id="email" type="text" name="emailBtn" />
+    <input id="email" type="text" name="email" />
     <br />
     <label for="password">Password :</label>
     <input id="password" type="password" name="passwordBtn" />
     <br />
+    <input type="submit" value="Login"></input>
   </fieldset>
  </form>
-<a href="dashboard.jsp" ><button>Login</button></a>
+<!-- <a href="dashboard.jsp" ><button>Login</button></a> -->
 <a href="signup.jsp"><button>Register</button></a>
 <br>
 <br>
@@ -67,7 +68,7 @@
 	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "root");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
 	
 		Statement stmt = con.createStatement();
 	
