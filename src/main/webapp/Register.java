@@ -136,7 +136,7 @@ public class Register extends JFrame {
 		JButton Register = new JButton("Register");
 		Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 String firstName = firstname.getText();
+				 	String firstName = firstname.getText();
 	                String lastName = lastname.getText();
 	                String emailstr = email.getText();
 	                String phoneNumber = phonenumber.getText();
@@ -152,8 +152,8 @@ public class Register extends JFrame {
 	                	java.sql.Connection con; 
 	            		Class.forName("com.mysql.jdbc.Driver"); 
 	            		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");            		            		
-	                    String query = "INSERT INTO account values('" + firstName + "','" + lastName + "','" +
-	                        password + "','" + emailstr + "','" + phoneNumber + "')";
+	                    String query = "INSERT INTO UserAuth values(0, '" + emailstr + "', MD5('" +
+	                        password + "'),'" + firstName + "')";
 
 	                    Statement stmt = con.createStatement();
 	                    int x = stmt.executeUpdate(query);

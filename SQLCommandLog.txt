@@ -1,40 +1,230 @@
 Initial Table Creation + Test Users
 
-CREATE TABLE Users(
-	userId INT,
-    userName VARCHAR(35),
-    first_name VARCHAR(35),
-    last_name VARCHAR(35),
-    email VARCHAR(45),
-    userType VARCHAR(20),
-    creationDate DATETIME
+CREATE TABLE `Driveways`.`Account` (
+  `accountId` INT NOT NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `creationDate` DATETIME NULL DEFAULT NOW(),
+  `expirationDate` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`accountId`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+  UNIQUE INDEX `accountId_UNIQUE` (`accountId` ASC) VISIBLE);
+
+  
+  CREATE TABLE `Driveways`.`User` (
+  `userId` INT NOT NULL,
+  `accountId` INT NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`userId`),
+  INDEX `accountId_idx` (`accountId` ASC) VISIBLE,
+  CONSTRAINT `accountId`
+    FOREIGN KEY (`accountId`)
+    REFERENCES `Driveways`.`Account` (`accountId`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE);
+    
+    ALTER TABLE `Driveways`.`User` 
+ADD CONSTRAINT `accountId`
+  FOREIGN KEY (`accountId`)
+  REFERENCES `Driveways`.`Account` (`accountId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+    
+    ALTER TABLE `Driveways`.`Guest` 
+DROP FOREIGN KEY `guest_ibfk_1`;
+ALTER TABLE `Driveways`.`Guest` 
+CHANGE COLUMN `userId` `accountId` INT NOT NULL ,
+ADD INDEX `guest_ibfk_1_idx` (`accountId` ASC) VISIBLE,
+DROP PRIMARY KEY;
+;
+ALTER TABLE `Driveways`.`Guest` 
+
+  ADD FOREIGN KEY (`accountId`)
+  REFERENCES `Driveways`.`Account` (`accountId`);
+    
+  
+  
+  CREATE TABLE `Driveways`.`Vehicle` (
+  `vehicleId` INT NOT NULL,
+  `userId` INT NULL,
+  `Make` VARCHAR(45) NULL,
+  `Model` VARCHAR(45) NULL,
+  `Color` VARCHAR(45) NULL,
+  `license_plate` VARCHAR(45) NULL,
+  PRIMARY KEY (`vehicleId`),
+  INDEX `userId_idx` (`userId` ASC) VISIBLE,
+  CONSTRAINT `userId`
+    FOREIGN KEY (`userId`)
+    REFERENCES `Driveways`.`User` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+  
+  
+  CREATE TABLE `Driveways`.`Listing` (
+  `listingId` INT NOT NULL,
+  `userId` INT NULL,
+  `Status` VARCHAR(45) NULL,
+  `parking_size` VARCHAR(45) NULL,
+  PRIMARY KEY (`listingId`));
+  
+  
+  ALTER TABLE `Driveways`.`Listing` 
+DROP COLUMN `userId`,
+DROP INDEX `userId_idx` ;
+;
+
+
+
+CREATE TABLE `Driveways`.`Guest` (
+  `userId` INT NOT NULL,
+  `vehicleId` INT NOT NULL,
+  PRIMARY KEY (`userId`, `vehicleId`),
+  INDEX `vehicleId_idx` (`vehicleId` ASC) VISIBLE,
+
+    FOREIGN KEY (`userId`)
+    REFERENCES `Driveways`.`User` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+    FOREIGN KEY (`vehicleId`)
+    REFERENCES `Driveways`.`Vehicle` (`vehicleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+CREATE TABLE `Driveways`.`Address` (
+  `listingId` INT NOT NULL,
+  `Country` VARCHAR(45) NULL DEFAULT 'United State of America',
+  `State` VARCHAR(45) NULL,
+  `City` VARCHAR(45) NULL,
+  `Zipcode` INT NULL,
+  `Street` INT NULL,
+  `Number` INT NULL,
+  PRIMARY KEY (`listingId`),
+  
+    FOREIGN KEY (`listingId`)
+    REFERENCES `Driveways`.`Listing` (`listingId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE TABLE `Driveways`.`Order` (
+  `listingId` INT NOT NULL,
+  `vehicleId` INT NOT NULL,
+  `startTime` DATETIME NULL,
+  `endTime` DATETIME NULL,
+  `rate` VARCHAR(45) NULL,
+  PRIMARY KEY (`listingId`, `vehicleId`),
+  INDEX `vehicleId_idx` (`vehicleId` ASC) VISIBLE,
+
+    FOREIGN KEY (`listingId`)
+    REFERENCES `Driveways`.`Listing` (`listingId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+    FOREIGN KEY (`vehicleId`)
+    REFERENCES `Driveways`.`Vehicle` (`vehicleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `Driveways`.`PaymentInformation` (
+  `userId` INT NOT NULL,
+  `CardNumber` INT NULL,
+  `ExpDate` DATETIME NULL,
+  `depositInfo` VARCHAR(45) NULL,
+  PRIMARY KEY (`userId`));
+
+ALTER TABLE `Driveways`.`PaymentInformation` 
+ADD FOREIGN KEY (`userId`)
+  REFERENCES `Driveways`.`User` (`userId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+  CREATE TABLE `Driveways`.`TransactionDetails` (
+  `transactionid` INT NOT NULL,
+  `duration` INT NULL,
+  `startTime` DATETIME NULL,
+  `endTime` DATETIME NULL,
+  `rate` INT NULL,
+  PRIMARY KEY (`transactionid`));
+  
+
+
+CREATE TABLE `Driveways`.`reserves` (
+  `orderId` INT NOT NULL,
+  `listingId` INT NOT NULL,
+  PRIMARY KEY (`orderId`, `listingId`),
+  INDEX `listingId_idx` (`listingId` ASC) VISIBLE,
+
+    FOREIGN KEY (`orderId`)
+    REFERENCES `Driveways`.`Order` (`orderId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+
+    FOREIGN KEY (`listingId`)
+    REFERENCES `Driveways`.`Listing` (`listingId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+ALTER TABLE `Driveways`.`User` 
+DROP COLUMN `accountId`,
+DROP INDEX `accountId_idx` ;
+;
+ALTER TABLE `Driveways`.`User` 
+ADD
+  FOREIGN KEY (`userId`)
+  REFERENCES `Driveways`.`Account` (`accountId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+INSERT INTO Driveways.Account VALUES (
+1,
+"michael@driveways.com",
+MD5("password"),
+NOW(),
+NULL
 );
 
-INSERT INTO Users VALUES (
-	1,
-    "michmoo",
-    "Michael",
-    "Moore",
-	"michael@driveways.com",
-    "Admin",
-    NOW()
+
+INSERT INTO Driveways.Account VALUES (
+2,
+"mohit@driveways.com",
+MD5("password"),
+NOW(),
+NULL
+);
+
+
+INSERT INTO Driveways.Account VALUES (
+6,
+"Ann1993@hotmail.com",
+MD5("passwordz"),
+NOW(),
+NULL
+);
+
+
+INSERT INTO Driveways.Account VALUES (
+8,
+"1337coder@msn.com",
+MD5("passwordzzz"),
+NOW(),
+NULL
+);
+
+
+INSERT INTO Driveways.Account VALUES (
+9,
+"jimmy@gmail.com",
+MD5("passwordzzzz"),
+NOW(),
+NULL
 );
 
 
 
-CREATE table UserAuth (
-
-	id int unsigned NOT NULL AUTO_INCREMENT,
-    UserEmail varchar(255) DEFAULT NULL,
-    UserPassword varchar(255) DEFAULT NULL,
-    primary key(id)
-
-);
-
-INSERT INTO Driveways.UserAuth VALUES(
-	0,
-	"michael@driveways.com",
-    MD5("password")
-
-);
-SELECT * FROM Driveways.UserAuth;
+  
+  

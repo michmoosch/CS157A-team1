@@ -31,7 +31,9 @@
 <br>
 <a href="driveways.jsp"><button>back</button></a>
 
+
 <p id="feedback">
+
 	
 	<%
 		String firstname = request.getParameter("fname");
@@ -47,15 +49,15 @@
 		
 			Statement stmt = con.createStatement();
 		
-			ResultSet res1 = stmt.executeQuery("SELECT id FROM Driveways.UserAuth WHERE UserEmail = '" + email + "';");
+			ResultSet res1 = stmt.executeQuery("SELECT accountId FROM Driveways.Account WHERE email = '" + email + "');");
 		
 		
 			if (email != null){
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
-					String newVals = "0, '" + email + "', MD5('" + password+"'), '" + firstname + "'";
-					con.createStatement().executeUpdate("INSERT INTO Driveways.UserAuth VALUES(" + newVals + ")");
+					String newVals = "0, '" + email + "', MD5('" + password + "')'";
+					con.createStatement().executeUpdate("INSERT INTO Driveways.Account VALUES(" + newVals + ");");
 					out.println("successfully created new account");	
 				}
 			}
