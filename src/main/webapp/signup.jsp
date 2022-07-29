@@ -29,7 +29,7 @@
 </form>
 <br>
 <br>
-<a href="driveways.jsp"><button>back</button></a>
+<a href="driveways.jsp"><button>Back</button></a>
 
 
 <p id="feedback">
