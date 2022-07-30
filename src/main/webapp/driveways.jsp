@@ -128,11 +128,8 @@
     
     const formCheck = function(event) {
     	
-    	const validation = (<%= loggedIn %>);
-    	if (validation){
-    		return true;
-    	}
-    	
+    	const validation = (<%= loggedIn %>)
+    	console.log(validation);
     	return false;
     	
     }
