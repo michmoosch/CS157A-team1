@@ -19,6 +19,7 @@
   <input type="file" id="myFile" name="filename">
   <input type="submit">
 </form>
+<button>Save the listing</button>
 <hr>
    <a href="dashboard.jsp" ><button>Back</button></a>
 </body>
