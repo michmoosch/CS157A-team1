@@ -30,19 +30,62 @@
 <br>
 <br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
-<form action = "dashboard.jsp" method="post">
+
+<form name="loginForm" id="loginId" method="post" action="" onsubmit="return formCheck();" >
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>
     <input id="email" type="text" name="email" />
     <br />
     <label for="password">Password :</label>
-    <input id="password" type="password" name="passwordBtn" />
+    <input id="password" type="password" name="password" />
     <br />
-    <input type="submit" value="Login"></input>
+    <input type="submit" value="Login" ></input>
   </fieldset>
  </form>
-<!-- <a href="dashboard.jsp" ><button>Login</button></a> -->
+<!-- <a href="dashboard.jsp" ><button>Login</button></a>  action = "dashboard.jsp"-->
+
+
+<p style="font-weight: bold; color: red;">
+<% 
+	String email = request.getParameter("email");
+	String password = request.getParameter("password");
+	boolean loggedIn = false;
+	out.println("");
+	
+	try { 
+		java.sql.Connection con; 
+		Class.forName("com.mysql.jdbc.Driver"); 
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
+	
+		Statement stmt = con.createStatement();
+	
+		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "' AND password = MD5('" + password + "');");
+		
+		int thisId = -1;
+		
+		while(res1.next()){
+			thisId = res1.getInt(1);
+		}
+	
+		if (email != null){
+			if (thisId <= 0 ){
+				out.println("Login not found, click Register to create an account");
+				
+			} else{
+				out.println("Successfully Logged in to: " + email);
+				loggedIn = true;
+			}
+		}
+		
+	
+		con.close(); 
+	}catch(SQLException e) { 
+		out.println("SQLException caught: " +e.getMessage()); 
+	} 
+%>
+</p>
+
 <a href="signup.jsp"><button>Register</button></a>
 <br>
 <br>
@@ -59,42 +102,6 @@
 </form>
 
 
-<p style="font-weight: bold;">
-<% 
-	String email = request.getParameter("email");
-	String password = request.getParameter("password");
-	out.println("");
-	
-	try { 
-		java.sql.Connection con; 
-		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
-	
-		Statement stmt = con.createStatement();
-	
-		ResultSet res1 = stmt.executeQuery("SELECT * FROM Driveways.UserAuth WHERE UserEmail = '" + email + "' AND UserPassword = MD5('" + password + "');");
-		
-		int thisId = -1;
-		
-		while(res1.next()){
-			thisId = res1.getInt(1);
-		}
-	
-		if (email != null){
-			if (thisId <= 0 ){
-				out.println("Not Found");
-			} else{
-				out.println("Successfully Logged in to: " + email);
-			}
-		}
-		
-	
-		con.close(); 
-	}catch(SQLException e) { 
-		out.println("SQLException caught: " +e.getMessage()); 
-	} 
-%>
-</p>
 
 
 <script>
@@ -107,6 +114,17 @@
     
     function handleSubmit() {
     	console.log("Submitted: " + email);
+    }
+    
+    function formCheck() {
+    	if (<%= loggedIn %>){
+    		document.loginForm.action="dashboard.jsp";
+    	}
+    	else{
+    		document.loginForm.action="driveways.jsp"
+    	}
+    	return true;
+    	
     }
 </script>
 

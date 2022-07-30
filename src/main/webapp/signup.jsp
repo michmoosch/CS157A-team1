@@ -56,7 +56,7 @@
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
-					String newVals = "0, '" + email + "', MD5('" + password + "')'";
+					String newVals = "0, '" + email + "', MD5('" + password + "', NULL, NULL)'";
 					con.createStatement().executeUpdate("INSERT INTO Driveways.Account VALUES(" + newVals + ");");
 					out.println("successfully created new account");	
 				}

@@ -20,12 +20,12 @@
 
 		Statement stmt = con.createStatement();
 
-		ResultSet res1 = stmt.executeQuery("SELECT * FROM Driveways.UserAuth WHERE UserEmail = '" + email + "';");
+		ResultSet res1 = stmt.executeQuery("SELECT * FROM Driveways.Account WHERE email = '" + email + "';");
 
 		
 		if (res1.next()) {
-			request.setAttribute("NAME",res1.getString("Name"));
-			request.setAttribute("EMAIL", res1.getString("UserEmail"));
+			//request.setAttribute("NAME",res1.getString("Name"));
+			request.setAttribute("EMAIL", res1.getString("email"));
 		 }
 		else{
 			request.setAttribute("NAME", "User not found");
