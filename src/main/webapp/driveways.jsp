@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html> 
 <head> 
+<div class="topnav" id="myTopnav">
+  <a href="driveways.jsp" class="active">Driveways/a>
+  <a href="signup.jsp">Create an account</a>
+  <a href="signin.jsp">Sign in</a>
+ <!--   <a href="r">Rent a driveway</a> -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 <title>DriveWays</title> 
   <meta name="description" content="Parking hosting/renting">
   <meta name="author" content="Mohit, Micheal, Dat">
@@ -28,10 +37,11 @@
 <aside class="rightBar"> &quot;..Hassle Free Commute...&quot;
 </aside>
 <br>
+
 <br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
 
-<form name="loginForm" id="loginId" method="post" action="" onsubmit="return formCheck();" >
+<form name="loginForm" id="loginId" method="post" onsubmit="return formCheck();" action="dashboard.jsp"  >
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>
@@ -116,17 +126,18 @@
     	console.log("Submitted: " + email);
     }
     
-    function formCheck() {
-    	if (<%= loggedIn %>){
-    		document.loginForm.action="dashboard.jsp";
+    const formCheck = function(event) {
+    	
+    	const validation = (<%= loggedIn %>);
+    	if (validation){
+    		return true;
     	}
-    	else{
-    		document.loginForm.action="driveways.jsp"
-    	}
-    	return true;
+    	
+    	return false;
     	
     }
 </script>
+
 
 
 <footer>

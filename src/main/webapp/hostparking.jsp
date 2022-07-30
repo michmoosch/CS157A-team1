@@ -14,7 +14,13 @@
 	<h3 id = "time">Time available: </h3>
 	<h3 id = "noOfSpots">Parking spots available </h3>
 	<h3 id = "cost">Parking Cost/Hour: </h3>
-	<hr>
+	<h3>Upload the driveway picture</h3>
+    <form action="/action_page.php">
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form>
+<button>Save the listing</button>
+<hr>
    <a href="dashboard.jsp" ><button>Back</button></a>
 </body>
 <footer>
@@ -23,4 +29,3 @@
 	last updated: 7/4/2022 <br>
 	</p>
 </footer>
-</html>

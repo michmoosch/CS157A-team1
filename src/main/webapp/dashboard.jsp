@@ -16,20 +16,30 @@
  	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
+
 		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
+
 
 		Statement stmt = con.createStatement();
 
-		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveways.account WHERE email = '" + email + "';");
+		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
 
 		
 		if (res1.next()) {
-			//request.setAttribute("NAME",res1.getString("Name"));
+			int id = res1.getInt("accountId");
 			request.setAttribute("EMAIL", res1.getString("email"));
+			ResultSet res2 = stmt.executeQuery("SELECT * FROM driveway.user WHERE userId = " + id + ";");
+			if (res2.next()){
+				request.setAttribute("NAME", res2.getString("first_name"));
+			}
+			
+			//request.setAttribute("NAME",res1.getString("name"));
+			
+			
 		 }
 		else{
-			request.setAttribute("NAME", "User not found");
-			request.setAttribute("EMAIL", "");
+			//request.setAttribute("NAME", "User not found");
+			request.setAttribute("EMAIL", "Email not found");
 		}
 		
 		con.close(); 

@@ -56,9 +56,10 @@
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
-					String newVals = "0, '" + email + "', MD5('" + password + "'), NULL, NULL'";
-					con.createStatement().executeUpdate("INSERT INTO driveway.account VALUES(" + newVals + ");");
-					con.createStatement().executeUpdate("INSERT INTO driveway.user VALUES(0, '" + firstname + "', '"+ lastname +"');");
+					String newVals = "0, '" + email + "', MD5('" + password + "'), NULL, NULL";
+ 					con.createStatement().executeUpdate("INSERT INTO driveway.account VALUES(" + newVals + ");");
+ 					String getAcctId = "(SELECT accountId FROM account WHERE email='" + email + "')";
+ 					con.createStatement().executeUpdate("INSERT INTO driveway.user VALUES(" + getAcctId +", '" + firstname + "', '"+ lastname +"');");
 					out.println("successfully created new account");	
 				}
 			}
