@@ -121,7 +121,7 @@
     	
     	const validation = (<%= loggedIn %>)
     	console.log(validation);
-    	return false;
+    	return true;
     	
     }
 </script>

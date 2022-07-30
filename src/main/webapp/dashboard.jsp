@@ -48,8 +48,9 @@
 			
 		 }
 		else{
-			//request.setAttribute("NAME", "User not found");
-			request.setAttribute("EMAIL", "Email not found");
+			/* 
+			request.setAttribute("NAME", "User not found");
+			request.setAttribute("EMAIL", "Email not found"); */
 		}
 		
 		con.close(); 
