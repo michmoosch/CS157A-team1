@@ -25,8 +25,8 @@ try {
 
 	Statement stmt = con.createStatement();
 
-	ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
-
+	//ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
+	ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "' AND password = MD5('" + password + "');");
 	
 	if (res1.next()) {
 		int id = res1.getInt("accountId");
