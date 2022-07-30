@@ -52,7 +52,7 @@
 			ResultSet res1 = stmt.executeQuery("SELECT accountId FROM driveway.account WHERE email = '" + email + "';");
 		
 		
-			if (email != null){
+			if (email != null && email != ""){
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
