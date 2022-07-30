@@ -110,10 +110,18 @@ span.price {
 }
 </style>
 <body>
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
+      <form action="dashboard.jsp">
       
         <div class="row">
           <div class="col-50">
@@ -167,10 +175,7 @@ span.price {
           </div>
           
         </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
-        <input type="submit" value="Continue to checkout" class="btn">
+        <input type="submit" value="Submit" class="btn">
       </form>
     </div>
   </div>

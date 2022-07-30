@@ -3,15 +3,6 @@
 <!DOCTYPE html>
 <html> 
 <head> 
-<div class="topnav" id="myTopnav">
-  <a href="driveways.jsp" class="active">Driveways/a>
-  <a href="signup.jsp">Create an account</a>
-  <a href="signin.jsp">Sign in</a>
- <!--   <a href="r">Rent a driveway</a> -->
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
 <title>DriveWays</title> 
   <meta name="description" content="Parking hosting/renting">
   <meta name="author" content="Mohit, Micheal, Dat">
@@ -66,7 +57,7 @@
 	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123@");
 	
 		Statement stmt = con.createStatement();
 	
