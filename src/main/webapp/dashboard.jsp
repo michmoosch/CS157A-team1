@@ -8,17 +8,19 @@
 <title>DashBoard</title>
 <link href="style.css" rel="stylesheet" />
 </head>
+<!--Body -->
 <body>
-<div class="topnav" id="myTopnav">
-  <a href="dashboard.jsp" class="active">Driveways </a>
-  <a href="carid.jsp">Add Vehicle info</a>
-  <a href="checkout.jsp">Add payment detail</a>
-  <a href="driveways.jsp">Logout</a>
-  
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+
+	<div class="topnav" id="myTopnav">
+	  <a href="dashboard.jsp" class="active">Driveways </a>
+	  <a href="carid.jsp">Add Vehicle info</a>
+	  <a href="checkout.jsp">Add payment detail</a>
+	  <a href="driveways.jsp">Logout</a>
+	  
+	  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+	    <i class="fa fa-bars"></i>
+	  </a>
+	</div>
 <%
 
 	String email = request.getParameter("email");
@@ -54,25 +56,23 @@
 	<hr>
 	<h3 id = "username">Name: <%= request.getAttribute("NAME") %> </h3> 
 	<h3 id = "email">Email: <%= request.getAttribute("EMAIL") %></h3>
-	<!-- <h3 id = "location">Location: </h3>
-	<h3 id = "userType">User Type: </h3> -->
 	<hr>
 	<br>
-	<h1 onclick = "handleClick(this)"> Host a Parking </h1>
-	<a href = "images/HostParking.jpg">
-	 <img src="images/HostParking.jpg" width="426" height="240" />
-	</a>
-		<a href="hostparking.jsp" ><button>Host Parking</button></a>
-	<h1 onclick = "handleClick(this)"> Rent a Parking</h1> 
-	<a href = "images/RentParking.jpg">
-	<img src="images/RentParking.jpg" width="426" height="240" />
-	</a>
-		<a href="rentparking.jsp" ><button>Rent Parking</button></a>
-		<br>
-		<br>
-		<h1 onclick = "handleClick(this)"> Exit </h1> 
+	
+<!-- Host Parking -->
+	<h1 onclick = "handleClick(this)"> Host Parking</h1>
+	<img src="images/HostParking.jpg" width="500" height="240" />
+	<a href="listing.jsp" ><button>Add Listing</button></a>
+		
+	
+<!-- Book Parking -->
+	<h1 onclick = "handleClick(this)">Rent Parking</h1>
+	<img src="images/RentParking.jpg" width="500" height="240" />
+	<a href="rentparking.jsp" ><button>Book</button></a>
+	
 </body>
 
+<!-- Footer -->
 <footer>
 	<p>
 	Special Thanks to our professor Mike Wu <br>

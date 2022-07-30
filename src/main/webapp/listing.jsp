@@ -37,6 +37,7 @@
 </form>
 <a href="dashboard.jsp" ><button>Back</button></a>
 </body>
+
 <footer>
 	<p>
 	Special Thanks to our professor Mike Wu <br>
