@@ -9,6 +9,16 @@
 <link href="style.css" rel="stylesheet" />
 </head>
 <body>
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment method</a>
+  <a href="driveways.jsp" class ="signout">Sign out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 <%
 
 	String email = request.getParameter("email");
