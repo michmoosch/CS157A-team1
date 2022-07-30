@@ -13,6 +13,8 @@
   <a href="dashboard.jsp" class="active">Driveways </a>
   <a href="carid.jsp">Add Vehicle info</a>
   <a href="checkout.jsp">Add payment detail</a>
+  <a href="driveways.jsp">Logout</a>
+  
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -69,7 +71,6 @@
 		<br>
 		<br>
 		<h1 onclick = "handleClick(this)"> Exit </h1> 
-		<a href="driveways.jsp"><button>Back</button></a>
 </body>
 
 <footer>
