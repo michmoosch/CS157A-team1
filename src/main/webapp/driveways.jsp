@@ -41,7 +41,7 @@
 <br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
 
-<form name="loginForm" id="loginId" method="post" onsubmit="return formCheck();" action="dashboard.jsp"  >
+<form name="loginForm" id="loginId" method="post" action="session.jsp"  >
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>

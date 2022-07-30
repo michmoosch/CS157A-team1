@@ -24,10 +24,11 @@
 
 		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
 
+		request.setAttribute("NAME", session.getAttribute("sessname"));
+		request.setAttribute("EMAIL", session.getAttribute("sessemail"));
 		
-		if (res1.next()) {
+		/* if (res1.next()) {
 			int id = res1.getInt("accountId");
-			request.setAttribute("EMAIL", res1.getString("email"));
 			ResultSet res2 = stmt.executeQuery("SELECT * FROM driveway.user WHERE userId = " + id + ";");
 			if (res2.next()){
 				request.setAttribute("NAME", res2.getString("first_name"));
@@ -35,13 +36,9 @@
 			
 			//request.setAttribute("NAME",res1.getString("name"));
 			
-			
-		 }
-		else{
-			/* 
-			request.setAttribute("NAME", "User not found");
-			request.setAttribute("EMAIL", "Email not found"); */
-		}
+			//request.setAttribute("EMAIL", res1.getString("email"));
+		 } */
+		
 		
 		con.close(); 
 		}catch(SQLException e) { 
