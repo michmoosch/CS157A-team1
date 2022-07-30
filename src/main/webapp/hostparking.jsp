@@ -8,6 +8,15 @@
 </head>
 <link href="style.css" rel="stylesheet" />
 <body>
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle info</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment detail</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 	<h2>Enter Parking Details<h2>
 	<hr>
 	<h3 id = "location">Location: </h3>

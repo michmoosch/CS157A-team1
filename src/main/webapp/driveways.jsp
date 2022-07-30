@@ -3,15 +3,6 @@
 <!DOCTYPE html>
 <html> 
 <head> 
-<div class="topnav" id="myTopnav">
-  <a href="driveways.jsp" class="active">Driveways/a>
-  <a href="signup.jsp">Create an account</a>
-  <a href="signin.jsp">Sign in</a>
- <!--   <a href="r">Rent a driveway</a> -->
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
 <title>DriveWays</title> 
   <meta name="description" content="Parking hosting/renting">
   <meta name="author" content="Mohit, Micheal, Dat">
@@ -19,7 +10,6 @@
 <link href="style.css" rel="stylesheet" />
 </head>
 <body >
- 
 <h1 onclick = "handleClick(this)"> Welcome to Driveways </h1> 
 <h2>Host or rent parking spaces anywhere you travel!</h2>
 <br>
