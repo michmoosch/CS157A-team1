@@ -14,9 +14,9 @@
 <form action="" method="post" id="signup" onsubmit="submitHandler()">
   <label for="fname">Name:</label>
   <input type="text" id="fname" name="fname"><br><br>
-  <!-- 
+ 
   <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br> -->
+  <input type="text" id="lname" name="lname"><br><br>
   
   <label for="email">Email: </label>
   <input type="text" id="email" name="email"><br><br>
@@ -45,19 +45,20 @@
 		 try { 
 			java.sql.Connection con; 
 			Class.forName("com.mysql.jdbc.Driver"); 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
 		
 			Statement stmt = con.createStatement();
 		
-			ResultSet res1 = stmt.executeQuery("SELECT accountId FROM Driveways.Account WHERE email = '" + email + "');");
+			ResultSet res1 = stmt.executeQuery("SELECT accountId FROM driveway.account WHERE email = '" + email + "';");
 		
 		
 			if (email != null){
 				if (res1.next() == true){
 					out.println("that email already exists");
 				} else{
-					String newVals = "0, '" + email + "', MD5('" + password + "', NULL, NULL)'";
-					con.createStatement().executeUpdate("INSERT INTO Driveways.Account VALUES(" + newVals + ");");
+					String newVals = "0, '" + email + "', MD5('" + password + "'), NULL, NULL'";
+					con.createStatement().executeUpdate("INSERT INTO driveway.account VALUES(" + newVals + ");");
+					con.createStatement().executeUpdate("INSERT INTO driveway.user VALUES(0, '" + firstname + "', '"+ lastname +"');");
 					out.println("successfully created new account");	
 				}
 			}

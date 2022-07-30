@@ -16,11 +16,11 @@
  	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Driveways?autoReconnect=true&useSSL=false", "root", "Root123!");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
 
 		Statement stmt = con.createStatement();
 
-		ResultSet res1 = stmt.executeQuery("SELECT * FROM Driveways.Account WHERE email = '" + email + "';");
+		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveways.account WHERE email = '" + email + "';");
 
 		
 		if (res1.next()) {
