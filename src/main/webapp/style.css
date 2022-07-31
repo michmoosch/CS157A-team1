@@ -1,3 +1,7 @@
+.signout {
+	position: absolute;
+	right: 0;
+}
 .topnav {
   overflow: hidden;
   background-color: #333;

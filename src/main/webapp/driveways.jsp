@@ -3,15 +3,6 @@
 <!DOCTYPE html>
 <html> 
 <head> 
-<div class="topnav" id="myTopnav">
-  <a href="driveways.jsp" class="active">Driveways/a>
-  <a href="signup.jsp">Create an account</a>
-  <a href="signin.jsp">Sign in</a>
- <!--   <a href="r">Rent a driveway</a> -->
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
 <title>DriveWays</title> 
   <meta name="description" content="Parking hosting/renting">
   <meta name="author" content="Mohit, Micheal, Dat">
@@ -41,7 +32,7 @@
 <br>
 <h1 onclick = "handleClick(this)"> Login/Sign Up</h1> 
 
-<form name="loginForm" id="loginId" method="post" onsubmit="return formCheck();" action="dashboard.jsp"  >
+<form name="loginForm" id="loginId" method="post" action="session.jsp"  >
   <fieldset>
     <legend>Login</legend>
     <label for="email">Email  : </label>
@@ -128,12 +119,9 @@
     
     const formCheck = function(event) {
     	
-    	const validation = (<%= loggedIn %>);
-    	if (validation){
-    		return true;
-    	}
-    	
-    	return false;
+    	const validation = (<%= loggedIn %>)
+    	console.log(validation);
+    	return true;
     	
     }
 </script>
