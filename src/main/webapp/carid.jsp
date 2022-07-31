@@ -29,50 +29,50 @@
 	String feedback = "";
  	out.println(feedback);
  	
+ 	// Get values from HTML Form
  	String carMake = request.getParameter("make");
  	String carModel = request.getParameter("model");
  	String carColor = request.getParameter("Color");
  	String licensePlate = request.getParameter("license_plate");
  	
  	
- 	out.println(licensePlate);
  	
  	
+ 	// Begin try block for Database Connection
  	try { 
+ 		
+ 		//Initialize db connection variables
  		java.sql.Connection con; 
  		Class.forName("com.mysql.jdbc.Driver"); 
-
  		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
-
-
  		Statement stmt = con.createStatement();
+ 		
+ 		// Format values for input to SQL Statement
+ 		String vals = "0, '" + carMake + "', '" + carModel + "', '" + carColor + "', '" + licensePlate + "'";
 
-
+		// Check to see if license plate is already on record (avoid duplicates)
  		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.vehicle WHERE license_plate = '" + licensePlate + "';");
  		int vehicleId = -1;
- 		
- 		while (res1.next()) {
+ 		if(res1.next()) {
  			vehicleId = res1.getInt("vehicleId");
- 			out.println("vehicleId: " + vehicleId);
- 			if (vehicleId < 0) {
- 				String vals = "0, '" + carMake + "', '" + carModel + "', '" + carColor + "', '" + licensePlate + "'";
- 				
- 				
- 				//String newVals = "0, '" + carMake + "', '" + carModel + "', '" + carColor + "', '" + licensePlate + "'";
- 				//stmt.executeUpdate("INSERT INTO driveway.vehicle VALUES("+ vals + ");");
- 				out.println(vals);
- 				
- 			}
- 		} 
+ 		}
  		
+ 		// If license plate is new, add to database
+ 		if (carMake != null) {
+ 			if (vehicleId < 0) {
+ 				stmt.executeUpdate("INSERT INTO driveway.vehicle VALUES("+ vals + ");");
+ 				out.println("\nSuccesfully added");
+ 	 		}
+ 	 		// Otherwise, give user feedback
+ 	 		else {
+ 	 			out.println("Error: that vehicle is already on record.");
+ 	 		}
+ 		}
  		
  		con.close(); 
  		}catch(SQLException e) { 
  			out.println("SQLException caught: " +e.getMessage()); 
  		} 
-
-
-
 %>
 </p>
 <br>
