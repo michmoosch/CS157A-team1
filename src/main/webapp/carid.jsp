@@ -58,10 +58,15 @@
  		}
  		
  		// If license plate is new, add to database
- 		if (carMake != null) {
+ 		if (carMake != null && carMake != "") {
  			if (vehicleId < 0) {
  				stmt.executeUpdate("INSERT INTO driveway.vehicle VALUES("+ vals + ");");
+ 				String subQ1 = "(SELECT vehicleId FROM driveway.vehicle WHERE license_plate='" + licensePlate + "')";
+ 				String subQ2 = "(SELECT accountId FROM driveway.account WHERE accountId=" + session.getAttribute("sessId") + ")";
+ 				stmt.executeUpdate("INSERT INTO driveway.guest VALUES(" + subQ2 + ", " + subQ1 + ");");
+ 				
  				out.println("\nSuccesfully added");
+ 				//out.println("INSERT INTO driveway.guest VALUES(" + subQ1 + ", " + subQ2 + ");");
  	 		}
  	 		// Otherwise, give user feedback
  	 		else {
