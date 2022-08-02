@@ -86,6 +86,7 @@
 	<div id="modal">
 	
 		<div id="modal-content">
+
 		</div>
 		
 		<button id="closeModal" onclick="closeModal()"> Back </button>
@@ -121,10 +122,14 @@
 			
 			const span3 = document.createElement("span");
 			span3.innerHTML = thisCity;
+			
+			const span4 = document.createElement("span");
+			span4.innerHTML = "SUCCESSFULLY BOOKED";
 				
 			modalContent.appendChild(span1);
 			modalContent.appendChild(span2);
 			modalContent.appendChild(span3);
+			modalContent.appendChild(span4);
 			modal.style.display = "block";
 			
 			

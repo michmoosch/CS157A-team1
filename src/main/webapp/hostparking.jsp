@@ -55,7 +55,7 @@
  		
  		// Format values for input to SQL Statement
  		String vals = "0, 'U.S.A.', 'California', '" + city + "', '" + zipcode + "', '" + street + "', '" + strtNumber + "'";
- 		String listingVals = "0, NULL, '" + carSize + "'";
+ 		String listingVals = "0, NULL, '" + carSize + "', (SELECT MAX(addressId) FROM address)";
 
 		// Check to see if address is already on record (avoid duplicates)
  		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.address WHERE Number = " + strtNumber + " AND Street = '" + street + "';");
@@ -70,12 +70,16 @@
  		if (strtNumber != null && strtNumber != "") {
  			if (addressId < 0) {
  				
+ 				String addressQ = "SELECT MAX(addressId) FROM address";
+ 				
  				// Insert into vehicle table + connect userId to vehicleId in guest table
- 				stmt.executeUpdate("INSERT INTO driveway.listing VALUES (" + listingVals + ");");
+ 				stmt.executeUpdate("INSERT INTO driveway.address VALUES("+ vals + ");");
+ 				stmt.executeUpdate("INSERT INTO driveway.listing VALUES (" + listingVals + ")");
  				String subQ1 = "(SELECT listingId FROM listing WHERE listingId=(SELECT  MAX(listingId) FROM listing))";
  				String subQ2 = "(SELECT accountId FROM driveway.account WHERE accountId=" + session.getAttribute("sessId") + ")";
  				stmt.executeUpdate("INSERT INTO driveway.host VALUES(" + subQ2 + ", " + subQ1 + ");");
- 				stmt.executeUpdate("INSERT INTO driveway.address VALUES("+ vals + ");");
+ 				
+ 				
  				
  				out.println("\nSuccesfully added");
  				

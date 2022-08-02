@@ -91,7 +91,7 @@
 <br>
 <br>
   
- <form action = "#">
+ <!-- <form action = "#">
   <fieldset>
 	 <legend>Reviews</legend>
 	 <p>Feedbacks from end user</p>
@@ -100,7 +100,7 @@
   	 <input type="submit" value="Submit" id="submitBtn">
   	 <br>
    </fieldset>
-</form>
+</form> -->
 
 
 
