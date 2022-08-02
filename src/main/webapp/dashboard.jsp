@@ -6,7 +6,8 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>DashBoard</title>
-	<link href="style.css" rel="stylesheet" />
+	<link href="./style.css" rel="stylesheet" type="text/css" />
+	<style><%@include file="./style.css"%></style>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
