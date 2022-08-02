@@ -140,6 +140,26 @@ hr{
 	color: navy;
 	size: 2;
 }
+#modal {
+	width: 300px;
+	height: 400px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	background-color: white;
+	display: none;
+}
+#modal-content {
+	display: flex;
+	flex-direction: column;
+}
+#closeModal {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
 
 #btnback{
 		text-align : center
