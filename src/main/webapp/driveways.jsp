@@ -8,6 +8,7 @@
   <meta name="author" content="Mohit, Micheal, Dat">
   <meta name="keywords" content="html,css,javascript">
 <link href="style.css" rel="stylesheet" />
+<style><%@include file="./style.css"%></style>
 </head>
 <body >
  

@@ -38,18 +38,7 @@
 
 		request.setAttribute("NAME", session.getAttribute("sessname"));
 		request.setAttribute("EMAIL", session.getAttribute("sessemail"));
-		
-		/* if (res1.next()) {
-			int id = res1.getInt("accountId");
-			ResultSet res2 = stmt.executeQuery("SELECT * FROM driveway.user WHERE userId = " + id + ";");
-			if (res2.next()){
-				request.setAttribute("NAME", res2.getString("first_name"));
-			}
-			
-			//request.setAttribute("NAME",res1.getString("name"));
-			
-			//request.setAttribute("EMAIL", res1.getString("email"));
-		 } */
+	
 		
 		
 		con.close(); 
@@ -59,7 +48,7 @@
 
 
 %>
-	<h1 onclick = "handleClick(this)"> Driveway's Dashboard</h1>
+	
 	<h2>Customer Details</h2>
 	<hr>
 	<h3 id = "username">Name: <%= request.getAttribute("NAME") %> </h3> 
@@ -73,7 +62,7 @@
 	 <img src="images/HostParking.jpg" width="426" height="240" />
 	</a>
 		<a href="hostparking.jsp" ><button>Host Parking</button></a>
-	<h1 onclick = "handleClick(this)"> Rent a Parking</h1> 
+	<h1 onclick = "handleClick(this)"> Rent a Parking Spot</h1> 
 	<a href = "images/RentParking.jpg">
 	<img src="images/RentParking.jpg" width="426" height="240" />
 	</a>
