@@ -60,6 +60,8 @@
  		// If license plate is new, add to database
  		if (carMake != null && carMake != "") {
  			if (vehicleId < 0) {
+ 				
+ 				// Insert into vehicle table + connect userId to vehicleId in guest table
  				stmt.executeUpdate("INSERT INTO driveway.vehicle VALUES("+ vals + ");");
  				String subQ1 = "(SELECT vehicleId FROM driveway.vehicle WHERE license_plate='" + licensePlate + "')";
  				String subQ2 = "(SELECT accountId FROM driveway.account WHERE accountId=" + session.getAttribute("sessId") + ")";
