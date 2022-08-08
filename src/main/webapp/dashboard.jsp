@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ page import= "java.sql.*" %> 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import= "java.sql.*" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +7,26 @@
 	<title>DashBoard</title>
 	<link href="./style.css" rel="stylesheet" type="text/css" />
 	<style><%@include file="./style.css"%></style>
+	<style>
+      *{
+        margin : 0;
+        padding :0;
+      }
+      #map{
+        height : 500px;
+        width: 100%;
+      }
+    </style>
 </head>
 <body>
-<div class="topnav" id="myTopnav">
-  <a href="dashboard.jsp" class="active">Driveways </a>
-  <a href="carid.jsp">Add Vehicle</a>
-  <a href="hostparking.jsp">Add listing</a>
-  <a href="checkout.jsp">Add payment method</a>
-  <a href="myaccount.jsp">My Account</a>
-  <a href="driveways.jsp" class ="signout">Sign out</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
 <%
 
 	String email = request.getParameter("email");
-	
  	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "root");
 
 
 		Statement stmt = con.createStatement();
@@ -53,6 +50,7 @@
 	<hr>
 	<h3 id = "username">Name: <%= request.getAttribute("NAME") %> </h3> 
 	<h3 id = "email">Email: <%= request.getAttribute("EMAIL") %></h3>
+
 	<!-- <h3 id = "location">Location: </h3>
 	<h3 id = "userType">User Type: </h3> -->
 	<hr>
@@ -69,9 +67,26 @@
 		<a href="rentparking.jsp" ><button>Rent Parking</button></a>
 		<br>
 		<br>
+			<h1>Google Maps API</h1>
+    <div id="map"></div>
 		<h1 onclick = "handleClick(this)"> Exit </h1> 
 		<a href="driveways.jsp"><button>Back</button></a>
 </body>
+ <script>
+      function initMap(){
+        var location = {lat : 37.344690, lng: -121.891090 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom : 15,
+          center: location
+        });
+        var marker = new google.maps.Marker({
+          position : location,
+          map : map
+        });
+      }
+    </script>
+
+ <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyArIVqq4LetQc27-bit7Flo5W5bN4eilhI&callback=initMap"></script>
 
 <footer>
 	<p>
