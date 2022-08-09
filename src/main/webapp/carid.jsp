@@ -24,17 +24,49 @@
   </a>
 </div>
 <br/>
-<h1>Vehicle Information</h1>
+
+<%
+String editMake = request.getParameter("editMake");
+String editModel = request.getParameter("editModel");
+String editColor = request.getParameter("editColor");
+String editPlate = request.getParameter("editPlate");
+
+boolean editing = false;
+
+if (editMake == "" || editMake == null){
+	editMake = "";
+	editModel = "";
+	editColor = "";
+	editPlate = "";
+}
+else{
+	editing = true;
+}
+
+
+%>
+
+<h1>
+Vehicle Information
+<%if (editing) { 
+
+%>
+	- Editing: Press Submit to save vehicle unedited
+<%
+}
+%>
+
+</h1>
 <br/>
 <form action="" method="post" id="carid" onsubmit="submitHandler()">
   <label for="make">Make:</label>
-  <input type="text" id="make" name="make"><br><br>
+  <input type="text" id="make" name="make" value="<%= editMake%>"><br><br>
   <label for="model">Model: </label>
-  <input type="text" id="model" name="model"><br><br>
+  <input type="text" id="model" name="model" value="<%= editModel%>"><br><br>
   <label for="color">Color: </label>
-  <input type="text" id="color" name="Color"><br><br>
+  <input type="text" id="color" name="Color" value="<%= editColor%>"><br><br>
   <label for="license_plate">License Plate: </label>
-  <input type="text" id="license_plate" name="license_plate"><br><br>
+  <input type="text" id="license_plate" name="license_plate" value="<%= editPlate%>"><br><br>
  
   <input type="submit" value="Submit" id="submitBtn">
 </form>

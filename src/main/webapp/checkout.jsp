@@ -10,7 +10,19 @@
 <style><%@include file="./style.css"%></style>
 </head>
 <body>
+<%
 
+int editCardNumber = -1;
+boolean editing = false;
+
+
+
+if(request.getParameter("editCardNumber") != null) {
+	editCardNumber = Integer.parseInt(request.getParameter("editCardNumber"));
+	editing = true;
+}
+
+%>
 <div class="topnav" id="myTopnav">
   <a href="dashboard.jsp" class="active">Driveways </a>
   <a href="carid.jsp">Add Vehicle</a>
@@ -28,7 +40,17 @@
 
 <form action="" method="post" id="carid" onsubmit="submitHandler()">
   <label for="cardNumber">Card Number:</label>
-  <input type="text" id="cardNumber" name="cardNumber"><br><br>
+  <%
+  if (!editing) {
+	  %>
+	  <input type="text" id="cardNumber" name="cardNumber"><br><br>
+	  <%
+  } else{
+	  %>
+	  <input type="text" id="cardNumber" name="cardNumber" value="<%= editCardNumber %>"><br><br>
+	  <%
+  }
+  %>
   <label for="expDate">Exp Date: </label>
   <input type="text" id="expDate" name="expDate"><br><br>
   <input type="submit" value="Submit" id="submitBtn">
@@ -45,7 +67,6 @@
  	
  	
  	String vals = request.getAttribute("userId") + ", " + cardNum + ", NULL , NULL";
- 	//out.println("vals: " + vals);
  	
  	// Begin try block for Database Connection
  	try { 
@@ -63,23 +84,19 @@
  	 		stmt.executeUpdate("INSERT INTO paymentinformation VALUES(" + vals +");");
  		}
  		
- 		//stmt.executeUpdate("INSERT INTO paymentinformation VALUES(" + vals +");");
- 		/* if (res1.next()){
- 			userId = res1.getInt("userId");
- 			
- 			// New Card
- 			if(userId < 0) {
- 				stmt.executeUpdate("INSERT INTO paymentinformation VALUES(" + vals +");");
- 			}
- 			else{ 
- 				out.println("You already have a card on file");
- 			}
- 		}  */
+ 		
+ 		
  		con.close(); 
  		}catch(SQLException e) { 
  			out.println("SQLException caught: " +e.getMessage()); 
  		} 
+ 	
+ 	
 %>
+<script>
+
+
+</script>
 </p>
 <br>
 <br>

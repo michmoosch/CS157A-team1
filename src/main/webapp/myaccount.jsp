@@ -134,7 +134,7 @@
  			<td><% out.println(listings.getString("City")); %></td>
  			<td><% out.println(listings.getInt("Zipcode")); %></td>
  			<td>
- 				<a href="useredit.jsp?type=<%="vehicle"%>&id=<%=addressId%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 				<a href="useredit.jsp?type=<%="listing"%>&id=<%=addressId%>"><button type="button" class="accountButton" >Edit Listing</button></a>
  			</td>
 		</tr>
 		
@@ -155,11 +155,15 @@
 	
 	ResultSet card = stmt.executeQuery("SELECT * FROM paymentinformation WHERE userId=" + accountId + "");
 	while (card.next()) {
+		
 		%>
 			
 		<tr>
 			<td><% out.println(card.getInt("CardNumber")); %></td>
  			<td><% out.println(card.getString("ExpDate")); %></td>
+ 			<td>
+ 				<a href="useredit.jsp?type=<%="card"%>&num=<%=card.getInt("CardNumber")%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 			</td>
 		</tr>
 		<%
 	}
