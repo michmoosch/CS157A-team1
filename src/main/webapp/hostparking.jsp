@@ -11,6 +11,31 @@
 </head>
 
 <body>
+<%
+String editNumber = "";
+String editStreet = "";
+String editZipcode = "";
+String editCity = "";
+if (request.getParameter("editNumber") != null) {
+editNumber = request.getParameter("editNumber");
+editStreet = request.getParameter("editStreet");
+editZipcode = request.getParameter("editZipcode");
+editCity = request.getParameter("editCity");
+}
+boolean editing = false;
+
+if (editStreet == "" || editStreet == null){
+	editNumber = "";
+	editZipcode = "";
+	editCity = "";
+}
+else{
+	editing = true;
+}
+
+
+%>
+
 <div class="topnav" id="myTopnav">
   <a href="dashboard.jsp" class="active">Driveways </a>
   <a href="carid.jsp">Add Vehicle</a>
@@ -27,16 +52,16 @@
 <br/>
 <form action="" method="post" id="listing" >
   <label for="number">Number:</label>
-  <input type="text" id="number" name="number"><br><br>
+  <input type="text" value="<%= editNumber%>" name="number"><br><br>
   <label for="street">Street:</label>
-  <input type="text" id="street" name="street"><br><br>
+  <input type="text" value="<%= editStreet%>" name="street"><br><br>
   <label for="zipcode">Zipcode: </label>
-  <input type="text" id="zipcode" name="zipcode"><br><br>
+  <input type="text" value="<%= editZipcode%>" name="zipcode"><br><br>
   <label for="city">City: </label>
-  <input type="text" id="city" name="city"><br><br>
+  <input type="text" value="<%= editCity%>" name="city"><br><br>
   <label for="carSize">Car Size: </label>
-  <input list="carSizes" id="carSize" name="carSize"><br><br>
-  
+  <input list="carSizes" name="carSize"><br><br>
+ 
   <datalist id="carSizes">
     <option value="Small">
     <option value="Medium">
@@ -51,6 +76,7 @@
  	out.println(feedback);
  	
  	// Get values from HTML Form
+ 	
  	String strtNumber = request.getParameter("number");
  	String street = request.getParameter("street");
  	String zipcode = request.getParameter("zipcode");
@@ -58,7 +84,7 @@
  	String carSize = request.getParameter("carSize");
  	
  	
- 	
+
  	
  	// Begin try block for Database Connection
  	try { 
@@ -114,7 +140,6 @@
 
 
 <hr>
-   <a href="dashboard.jsp" ><button>Back</button></a>
 </body>
 <footer>
 	<p>

@@ -30,6 +30,11 @@ try {
 	String plate = "";
 	
 	ResultSet listing;
+	int number = -1;
+	String street = "";
+	String city = "";
+	int zipcode = -1;
+	String carsize ="";
 	ResultSet card;
 
 	switch (editType) {
@@ -62,14 +67,32 @@ try {
 		break;
 	case "listing":
 		id = Integer.parseInt(request.getParameter("id"));
-		//Delete from Host Where addressid = id
-		//Delete from listing where addressid = id
-		//Delete from address where addressid = id
-		//Forward to 'Add Listing' Page
-		//Fill fields with previous data (<input value="<%= data>">)
+		id = Integer.parseInt(request.getParameter("id"));
+		listing = stmt.executeQuery("SELECT * FROM driveway.address WHERE addressId=" + id + ";");
 		
+		if (listing.next()){
+			number = listing.getInt("Number");
+		 	street = listing.getString("Street");
+		 	zipcode = listing.getInt("Zipcode");
+		 	city = listing.getString("City");
+		 
+		}
 		
-		out.println("listingId: " + id);
+		stmt.executeUpdate("DELETE FROM driveway.host WHERE listingId IN (SELECT listingId FROM listing WHERE addressId=" + id +")");
+		stmt.executeUpdate("DELETE FROM driveway.listing WHERE addressId=" + id +"");
+		stmt.executeUpdate("DELETE FROM driveway.address WHERE addressId=" + id +"");
+		%>
+		<jsp:forward page="hostparking.jsp">
+  			<jsp:param name="editNumber" value="<%=number %>" ></jsp:param>
+  			<jsp:param name="editStreet" value="<%=street %>" ></jsp:param>
+  			<jsp:param name="editZipcode" value="<%=zipcode %>" ></jsp:param>
+  			<jsp:param name="editCity" value="<%=city %>" ></jsp:param>
+  			<jsp:param name="editing" value="true" ></jsp:param>
+		</jsp:forward>
+		
+		<%
+		  
+		
 		break;
 	case "card":
 		num = Integer.parseInt(request.getParameter("num"));
