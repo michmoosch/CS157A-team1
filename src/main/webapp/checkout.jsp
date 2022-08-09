@@ -7,10 +7,24 @@
 <meta charset="UTF-8">
 <title>Driveways</title>
 <link href="style.css" rel="stylesheet" />
+<style><%@include file="./style.css"%></style>
 </head>
 <body>
 
-<h1>Vehicle Information</h1>
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment method</a>
+  <a href="myaccount.jsp">My Account</a>
+  <a href="driveways.jsp" class ="signout">Sign out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<br/>
+<h1>Add Payment Method</h1>
+<br/>
 
 <form action="" method="post" id="carid" onsubmit="submitHandler()">
   <label for="cardNumber">Card Number:</label>

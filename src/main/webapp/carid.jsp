@@ -6,12 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Driveways</title>
-<link href="style.css" rel="stylesheet" />
+<link href="./style.css" rel="stylesheet" type="text/css" />
+	<style><%@include file="./style.css"%></style>
 </head>
 <body>
 
-<h1>Vehicle Information</h1>
 
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment method</a>
+  <a href="myaccount.jsp">My Account</a>
+  <a href="driveways.jsp" class ="signout">Sign out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<br/>
+<h1>Vehicle Information</h1>
+<br/>
 <form action="" method="post" id="carid" onsubmit="submitHandler()">
   <label for="make">Make:</label>
   <input type="text" id="make" name="make"><br><br>

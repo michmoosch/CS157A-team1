@@ -12,8 +12,9 @@
 
 String email = request.getParameter("email");
 String password = request.getParameter("password");
-
 String username = "NULL";
+
+session.setAttribute("isAdmin", false);
 
 
 try { 
@@ -40,6 +41,15 @@ try {
 			request.setAttribute("NAME", res2.getString("first_name"));
 		}
 		
+		ResultSet adminCheck = stmt.executeQuery("SELECT * FROM driveway.admin WHERE adminId =" + id + ";");
+		
+		if(adminCheck.next()) {
+			
+			session.setAttribute("isAdmin", true);
+		}
+		
+		
+		
 		session.setAttribute("sessname", username);
 		session.setAttribute("sessId", id);
 		session.setAttribute("sessemail", email);
@@ -54,13 +64,14 @@ try {
 	} 
 	String redirectURL = "http://localhost:8080/driveways/dashboard.jsp";
 
-	if (username == "NULL"){
+	 if (username == "NULL"){
 		session.invalidate();
 		redirectURL = "http://localhost:8080/driveways/driveways.jsp";
-	}
+	} 
 
-	
-	response.sendRedirect(redirectURL);
+	out.println(session.getAttribute("sessname"));
+	out.println(session.getAttribute("sessId"));
+    response.sendRedirect(redirectURL);
 %>
 </body>
 </html>

@@ -6,16 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Driveways</title>
-<link href="style.css" rel="stylesheet" />
+<link href="./style.css" rel="stylesheet" type="text/css" />
+	<style><%@include file="./style.css"%></style>
 </head>
 <body>
-
+<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment method</a>
+  <a href="myaccount.jsp">My Account</a>
+  <a href="driveways.jsp" class ="signout">Sign out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<br/>
 <h1>Account Information</h1>
 
 
 <%
 	String feedback = "";
  	out.println(feedback);
+ 	boolean isAdmin = (boolean) session.getAttribute("isAdmin");
+ 			
 
  	
  	
@@ -31,12 +45,13 @@
  		String fname ="";
 		String lname ="";
 		String email="";
+		int accountId = -1;
 		
 		
 
 		// Check to see if license plate is already on record (avoid duplicates)
  		ResultSet res1 = stmt.executeQuery("(SELECT * FROM driveway.account WHERE accountId=" + session.getAttribute("sessId") + ")");
- 		int accountId = -1;
+ 		
  		if(res1.next()) {
  			accountId = res1.getInt("accountId");
  			email = res1.getString("email");
@@ -63,6 +78,7 @@
  			%>
  			<h2><% out.println("Name: " + fname + " " + lname); %> </h2>
  			<h2><% out.println("Email: " + email); %> </h2>
+ 			<div id="tableShell" style="display: flex; flex-direction:row; margin: 2;">
  			<table border="1">
  				<tr>
  					<td>My Vehicles</td>
@@ -152,6 +168,7 @@
 		} 
 %>
 </table>
+</div>
 <br>
 <br>
 <a href="dashboard.jsp"><button>Back</button></a>

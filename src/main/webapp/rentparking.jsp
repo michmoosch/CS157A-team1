@@ -13,13 +13,24 @@
 
 <body>
 	<h2>Find Parking</h2>
+	<div class="topnav" id="myTopnav">
+  <a href="dashboard.jsp" class="active">Driveways </a>
+  <a href="carid.jsp">Add Vehicle</a>
+  <a href="hostparking.jsp">Add listing</a>
+  <a href="checkout.jsp">Add payment method</a>
+  <a href="myaccount.jsp">My Account</a>
+  <a href="driveways.jsp" class ="signout">Sign out</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
 	<form action="" method="post" id="listingSearch" >
   	<label for="search">Search:</label>
   	<input type="text" id="search" name="search">
 
   	<input type="submit" value="Submit" id="submitBtn">
 </form>
-	
+	<% boolean isAdmin = (boolean) session.getAttribute("isAdmin"); %>
 	<table border="1">
 		<tr>
 			<td>Number</td>
@@ -27,11 +38,17 @@
 			<td>City</td>
 			<td>Zipcode</td>
 			<td>Rent this</td>
+			<%if(isAdmin){
+			%>
+			<td>Admin Powers</td>
+			<%	
+			} %>
 		</tr>
 
 <%
 
 	String search = request.getParameter("search");
+	
 	
 	boolean searchFlag = false;
 	
@@ -64,24 +81,32 @@
  		
  		while(res1.next()) {
  			
+ 			int addressId = res1.getInt("addressId");
+ 			
+ 			
  			%>
  			<tr>
  				<td> <% out.println(res1.getInt("Number")); %></td>
  				<td> <% out.println(res1.getString("Street")); %></td>
  				<td> <% out.println(res1.getString("City")); %></td>
  				<td> <% out.println(res1.getString("Zipcode")); %></td>
- 				<td> <button id="reserve" value=<%out.println(res1.getInt("addressId"));%> onclick="handleClick(event)"> Reserve </button></td>
+ 				<td> 
+ 					<button id="reserve" value=<%out.println(res1.getInt("addressId"));%> onclick="handleClick(event)"> Reserve </button>
+ 				</td>
+ 				<%if(isAdmin) {%>
+ 				<td>
+ 					<a href="editlisting.jsp?id=<%=res1.getInt("addressId") %>"><button type="button" >Delete Listing</button></a>
+ 				</td>
+ 				<%
+ 				}
+ 				%>
  			</tr>
  			<% 
  		}
+ 		%>
  		
- 		con.close(); 
- 		}catch(SQLException e) { 
- 			out.println("SQLException caught: " +e.getMessage()); 
- 		} 
-%>
-	</table>
-	
+</table>
+	<input type="hidden" id="hiddenField"/>
 	
 	<div id="modal">
 	
@@ -139,12 +164,53 @@
 			
 		}
 		
+		function handleAdmin(event) {
+			
+			const adId = event.target.value;
+			
+			
+			
+			const modal = document.getElementById("modal");
+			const modalContent = document.getElementById("modal-content");
+
+			const span1 = document.createElement("span");
+			span1.innerHTML = "Are You sure you want to delete this entry?";
+			
+			const yes = document.createElement("button");
+			yes.innerHTML = "Yes";
+			
+			const no = document.createElement("button");
+			no.innerHTML = "No";
+			
+			
+			  <%
+			 
+			 
+			 int addressId = -2;
+			 int listingId = -1;
+			 
+			 ResultSet delete = stmt.executeQuery("SELECT * FROM driveway.listing WHERE addressId = " + addressId + "");
+			 if(delete.next()) {
+				 listingId = delete.getInt("listingId");
+			 }
+			 /* stmt.executeUpdate("DELETE FROM driveway.host WHERE listingId=" + listingId + "");
+			 stmt.executeUpdate("DELETE FROM driveway.listing WHERE listingId=" + listingId + "");
+			 stmt.executeUpdate("DELETE FROM driveway.address WHERE adressId=" + addressId + "");  */
+			 %> 
+			console.log(event.target.value);
+		}
+		
+		
 		function closeModal() {
 			document.getElementById("modal-content").innerHTML = "";
 			document.getElementById("modal").style.display = "none";
 		}
 		
 	</script>
+	<%con.close(); 
+ 		}catch(SQLException e) { 
+ 			out.println("SQLException caught: " +e.getMessage()); 
+ 		}  %>
 </body>
 <footer>
 	<p>
@@ -152,4 +218,5 @@
 	last updated: 7/4/2022 <br>
 	</p>
 </footer>
+
 </html>

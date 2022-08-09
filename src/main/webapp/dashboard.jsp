@@ -24,7 +24,8 @@
 <%
 
 	String email = request.getParameter("email");
-	
+	boolean isAdmin = (boolean) session.getAttribute("isAdmin");
+ 	
  	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
@@ -51,8 +52,19 @@
 	
 	<h2>Customer Details</h2>
 	<hr>
-	<h3 id = "username">Name: <%= request.getAttribute("NAME") %> </h3> 
+	<h3 id = "username">Welcome, <%= request.getAttribute("NAME") %> </h3> 
 	<h3 id = "email">Email: <%= request.getAttribute("EMAIL") %></h3>
+	<%
+		if(isAdmin) {
+			%>
+			<h4>You are an admin, nice.</h4>
+			<%
+		}
+		
+	
+	
+	
+	%>
 	<!-- <h3 id = "location">Location: </h3>
 	<h3 id = "userType">User Type: </h3> -->
 	<hr>
@@ -69,8 +81,7 @@
 		<a href="rentparking.jsp" ><button>Rent Parking</button></a>
 		<br>
 		<br>
-		<h1 onclick = "handleClick(this)"> Exit </h1> 
-		<a href="driveways.jsp"><button>Back</button></a>
+		
 </body>
 
 <footer>
