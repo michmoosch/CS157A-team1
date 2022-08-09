@@ -71,7 +71,7 @@
  		
  		// Format values for input to SQL Statement
  		String vals = "0, 'U.S.A.', 'California', '" + city + "', '" + zipcode + "', '" + street + "', '" + strtNumber + "'";
- 		String listingVals = "0, NULL, '" + carSize + "', (SELECT MAX(addressId) FROM address)";
+ 		String listingVals = "0, NULL, '" + carSize + "', (SELECT MAX(addressId) FROM address), 5";
 
 		// Check to see if address is already on record (avoid duplicates)
  		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.address WHERE Number = " + strtNumber + " AND Street = '" + street + "';");

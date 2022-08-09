@@ -15,6 +15,9 @@ String password = request.getParameter("password");
 String username = "NULL";
 
 session.setAttribute("isAdmin", false);
+session.setAttribute("sessname", null);
+session.setAttribute("sessId", null);
+session.setAttribute("sessemail", null);
 
 
 try { 
@@ -69,8 +72,7 @@ try {
 		redirectURL = "http://localhost:8080/driveways/driveways.jsp";
 	} 
 
-	out.println(session.getAttribute("sessname"));
-	out.println(session.getAttribute("sessId"));
+	
     response.sendRedirect(redirectURL);
 %>
 </body>

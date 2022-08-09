@@ -25,8 +25,8 @@
   </a>
 </div>
 	<form action="" method="post" id="listingSearch" >
-  	<label for="search">Search:</label>
-  	<input type="text" id="search" name="search">
+  	
+  	<input type="text" id="search" name="search" placeholder="Search">
 
   	<input type="submit" value="Submit" id="submitBtn">
 </form>

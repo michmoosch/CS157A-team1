@@ -35,14 +35,16 @@ try {
 	
 	stmt.executeUpdate("DELETE FROM driveway.host WHERE listingId=" + listingId + ";");
 	stmt.executeUpdate("DELETE FROM driveway.listing WHERE listingId=" + listingId + ";");
-	stmt.executeUpdate("DELETE FROM driveway.address WHERE adressId=" + addressId + ";");
-	
+	stmt.executeUpdate("DELETE FROM driveway.address WHERE addressId=" + addressId + ";");
+	out.println("listingId: " + listingId);
+	out.println("addressId: " + addressId);
 
 	con.close(); 
 }catch(SQLException e) { 
 	out.println("SQLException caught: " +e.getMessage()); 
 } 
 String redirectURL = "http://localhost:8080/driveways/rentparking.jsp";
+
 response.sendRedirect(redirectURL);
 %>
 </p>
