@@ -58,12 +58,20 @@ String defaultSearch = "SELECT * FROM address;";
   </a>
 </div>
 	<h1>Confirm Booking</h1>
+	<img src="images/Driveways.jpg" width="426" height="240" />
+	
+	<div class = "userDetail" id="myUserDetail">
 	<h3 id = "username">Name: <%= request.getAttribute("NAME") %> </h3> 
 	<h3 id = "email">Email: <%= request.getAttribute("EMAIL") %></h3>
 	<h3 id = "number">Number: <%= request.getAttribute("NUMBER") %></h3>
 	<h3 id = "street">Street: <%= request.getAttribute("STREET") %></h3>
 	<h3 id = "city">City: <%= request.getAttribute("CITY") %></h3>
 	<h3 id = "zipcode">ZipCode: <%= request.getAttribute("ZIPCODE") %></h3>
+	</div>
+	<a href="dashboard.jsp" ><button>Confirm Parking</button></a>
+	
+	
+	
 </body>
  <script>
       
