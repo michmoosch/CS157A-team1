@@ -112,12 +112,13 @@
 %>
 </table>
 <br>
-<table class="greenTable" border="1">
+<table style="width: 500px;" class="greenTable" border="1">
 	<caption style="background-color: #D4EED1; font-size: 20px;"> My Listings</caption>
 		<tr>
  			<td>Street</td>
  			<td>City</td>
  			<td>Zipcode</td>
+ 			<td>Edit</td>
  		</tr>
 
 <%
@@ -144,11 +145,12 @@
 	%>
 	</table>
 	<br/>
-	<table class="greenTable" border="1">
+	<table style="width: 500px;" class="greenTable" border="1">
 	<caption style="background-color: #D4EED1; font-size: 20px;"> My Cards</caption>
 	<tr>
  			<td>Card Number</td>
  			<td>Exp Date</td>
+ 			<td>Edit</td>
  		</tr>
 	<%
 		

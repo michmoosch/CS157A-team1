@@ -58,10 +58,17 @@ try {
 		<%
 		  
 		
-		out.println("vehicleId: " + id);
+		
 		break;
 	case "listing":
 		id = Integer.parseInt(request.getParameter("id"));
+		//Delete from Host Where addressid = id
+		//Delete from listing where addressid = id
+		//Delete from address where addressid = id
+		//Forward to 'Add Listing' Page
+		//Fill fields with previous data (<input value="<%= data>">)
+		
+		
 		out.println("listingId: " + id);
 		break;
 	case "card":
