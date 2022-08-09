@@ -11,34 +11,35 @@
 <body>
 <p>
 <%
-	String search = request.getParameter("search");
-	boolean searchFlag = false;
-	if (search != null && search != ""){
-		searchFlag = true;
-	}
+	//int addressId = res1.getInt("addressId");
+	int addressId;
+	addressId = Integer.parseInt(request.getParameter("id"));
 	
-	String email = request.getParameter("email");
+	String num = request.getParameter("num");
+	String streetName = request.getParameter("street");
+	
+	String city = request.getParameter("city");
+	String zip = request.getParameter("zip");
+	
+	
+
+
  	try { 
 		java.sql.Connection con; 
 		Class.forName("com.mysql.jdbc.Driver"); 
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "root");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/driveway?autoReconnect=true&useSSL=false", "root", "Root123!");
 		Statement stmt = con.createStatement();
-		ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
+		//ResultSet res1 = stmt.executeQuery("SELECT * FROM driveway.account WHERE email = '" + email + "';");
 		request.setAttribute("NAME", session.getAttribute("sessname"));
 		request.setAttribute("EMAIL", session.getAttribute("sessemail"));
 		
 String defaultSearch = "SELECT * FROM address;";
  		ResultSet res2 = null;
- 		if (searchFlag){
- 			res2 = stmt.executeQuery("SELECT * FROM address WHERE city='" + search + "' OR Zipcode='" + search + "';");
- 		}
- 		else {
- 			res2 = stmt.executeQuery("SELECT * FROM address;");
- 		}
- 		request.setAttribute("NUMBER", session.getAttribute("sessnumber"));
-		request.setAttribute("STREET", session.getAttribute("sessstreet"));
-		request.setAttribute("CITY", session.getAttribute("sessscity"));
-		request.setAttribute("ZIPCODE", session.getAttribute("sesszipcode"));
+ 		
+ 		request.setAttribute("NUMBER", num);
+		request.setAttribute("STREET", streetName);
+		request.setAttribute("CITY", city);
+		request.setAttribute("ZIPCODE", zip);
 		con.close(); 
 		}catch(SQLException e) { 
 			out.println("SQLException caught: " +e.getMessage()); 
@@ -68,7 +69,7 @@ String defaultSearch = "SELECT * FROM address;";
 	<h3 id = "city">City: <%= request.getAttribute("CITY") %></h3>
 	<h3 id = "zipcode">ZipCode: <%= request.getAttribute("ZIPCODE") %></h3>
 	</div>
-	<a href="dashboard.jsp" ><button>Confirm Parking</button></a>
+	<a href="handleconfirmation.jsp?id=<%=addressId %>" ><button>Confirm Parking</button></a>
 	
 	
 	

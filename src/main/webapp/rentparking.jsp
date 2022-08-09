@@ -31,7 +31,7 @@
   	<input type="submit" value="Submit" id="submitBtn">
 </form>
 	<% boolean isAdmin = (boolean) session.getAttribute("isAdmin"); %>
-	<table border="1">
+	<table class="greenTable" border="1">
 		<tr>
 			<td>Number</td>
 			<td>Street</td>
@@ -70,19 +70,23 @@
  		
  		
  		String defaultSearch = "SELECT * FROM address;";
+ 		String searchAvailable = "SELECT * FROM driveway.address WHERE addressId IN(SELECT addressId FROM driveway.listing WHERE Status IS NULL)";
  		
  		if (searchFlag){
- 			res1 = stmt.executeQuery("SELECT * FROM address WHERE city='" + search + "' OR Zipcode='" + search + "';");
+ 			res1 = stmt.executeQuery("SELECT * FROM address WHERE city='" + search + "' OR Zipcode='" + search + "' AND addressId IN(SELECT addressId FROM driveway.listing WHERE Status IS NULL) ;");
  		}
  		else {
- 			res1 = stmt.executeQuery("SELECT * FROM address;");
+ 			res1 = stmt.executeQuery(searchAvailable);
  		}
  		
  		
  		while(res1.next()) {
  			
  			int addressId = res1.getInt("addressId");
- 			
+ 			int num = res1.getInt("Number");
+ 			String street = res1.getString("Street");
+ 			String city = res1.getString("City");
+ 			String zip = res1.getString("Zipcode");
  			
  			%>
  			<tr>
@@ -91,7 +95,8 @@
  				<td> <% out.println(res1.getString("City")); %></td>
  				<td> <% out.println(res1.getString("Zipcode")); %></td>
  				<td> 
- 					<button id="reserve" value=<%out.println(res1.getInt("addressId"));%> onclick="handleClick(event)"> Reserve </button>
+ 					<a href="confirmation.jsp?id=<%=addressId%>&num=<%=num%>&street=<%=street%>&city=<%=city%>&zip=<%=zip%>"><button type="button" >Reserve</button></a>
+ 					
  				</td>
  				<%if(isAdmin) {%>
  				<td>

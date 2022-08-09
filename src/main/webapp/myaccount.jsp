@@ -28,7 +28,7 @@
 <%
 	String feedback = "";
  	out.println(feedback);
- 	boolean isAdmin = (boolean) session.getAttribute("isAdmin");
+ 	//boolean isAdmin = (boolean) session.getAttribute("isAdmin");
  			
 
  	
@@ -78,26 +78,29 @@
  			%>
  			<h2><% out.println("Name: " + fname + " " + lname); %> </h2>
  			<h2><% out.println("Email: " + email); %> </h2>
- 			<div id="tableShell" style="display: flex; flex-direction:row; margin: 2;">
- 			<table border="1">
- 				<tr>
- 					<td>My Vehicles</td>
- 				</tr>
+ 			<div id="tableShell" style="display: flex; flex-direction:column; margin: 2; align-items: center;">
+ 			<br>
+ 			
+ 			<table style="width: 500px;" class="greenTable" border="1">
+ 				<caption style="background-color: #D4EED1; font-size: 20px;"> My Vehicles</caption>
  				<tr>
  					<td>Make</td>
  					<td>Model</td>
  					<td>License Plate</td>
+ 					<td>Edit</td>
  				</tr>
  			<% 
  			while (vehicles.next()){
- 				
- 			
+ 				int vehicleId = vehicles.getInt("vehicleId");
  				
  				%>
  				<tr>
  					<td><% out.println(vehicles.getString("Make")); %></td>
  					<td><% out.println(vehicles.getString("Model")); %></td>
  					<td><% out.println(vehicles.getString("license_plate")); %></td>
+ 					<td>
+ 						<a href="useredit.jsp?type=<%="vehicle"%>&id=<%=vehicleId%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 					</td>
  				</tr>
  				
  				
@@ -108,8 +111,9 @@
  	 		
 %>
 </table>
-<table border="1">
-	<tr><td>My Listings</td></tr>
+<br>
+<table class="greenTable" border="1">
+	<caption style="background-color: #D4EED1; font-size: 20px;"> My Listings</caption>
 		<tr>
  			<td>Street</td>
  			<td>City</td>
@@ -123,19 +127,25 @@
 	ResultSet listings = stmt.executeQuery("SELECT * FROM address WHERE addressId IN (" + subq3 +")");
 	
 	while (listings.next()){
+		int addressId = listings.getInt("addressId");
 		%>
 		<tr>
 			<td><% out.println(listings.getString("Street")); %></td>
  			<td><% out.println(listings.getString("City")); %></td>
  			<td><% out.println(listings.getInt("Zipcode")); %></td>
+ 			<td>
+ 				<a href="useredit.jsp?type=<%="vehicle"%>&id=<%=addressId%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 			</td>
 		</tr>
 		
 		<% 
 	}
 	
-	%></table>
-	<table border="1">
-	<tr><td>My Card</td></tr>
+	%>
+	</table>
+	<br/>
+	<table class="greenTable" border="1">
+	<caption style="background-color: #D4EED1; font-size: 20px;"> My Cards</caption>
 	<tr>
  			<td>Card Number</td>
  			<td>Exp Date</td>
