@@ -66,7 +66,7 @@ if(request.getParameter("editCardNumber") != null) {
  	request.setAttribute("userId", session.getAttribute("sessId"));
  	
  	
- 	String vals = request.getAttribute("userId") + ", " + cardNum + ", NULL , NULL";
+ 	String vals = request.getAttribute("userId") + ", " + cardNum + ", NULL";
  	
  	// Begin try block for Database Connection
  	try { 
