@@ -99,7 +99,7 @@
  					<td><% out.println(vehicles.getString("Model")); %></td>
  					<td><% out.println(vehicles.getString("license_plate")); %></td>
  					<td>
- 						<a href="useredit.jsp?type=<%="vehicle"%>&id=<%=vehicleId%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 						<a href="useredit.jsp?type=<%="vehicle"%>&id=<%=vehicleId%>"><button type="button" class="accountButton" >Edit Vehicle</button></a>
  					</td>
  				</tr>
  				
@@ -164,7 +164,7 @@
 			<td><% out.println(card.getInt("CardNumber")); %></td>
  			<td><% out.println(card.getString("ExpDate")); %></td>
  			<td>
- 				<a href="useredit.jsp?type=<%="card"%>&num=<%=card.getInt("CardNumber")%>"><button type="button" class="accountButton" >Edit Listing</button></a>
+ 				<a href="useredit.jsp?type=<%="card"%>&num=<%=card.getInt("CardNumber")%>"><button type="button" class="accountButton" >Edit Card</button></a>
  			</td>
 		</tr>
 		<%
